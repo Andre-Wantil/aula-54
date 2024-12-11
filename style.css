@@ -1,0 +1,9 @@
+.estiloEscuro {
+    background-color: rgb(27, 27, 27);
+    color: white;
+}
+
+.estiloClaro {
+    background-color: white;
+    color: black;
+}

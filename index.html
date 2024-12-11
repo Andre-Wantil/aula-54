@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <title>Texto</title>
+</head>
+<body class="estiloEscuro">
+    <button id="botaoReceba" type="button" style="height: 2rem; width: 4rem;">Receber</button>
+    <button id="botaoPuf" type="button" style="height: 2rem; width: 3.5rem;">Magica</button>
+    <p id="elemento">Receba?</p>
+    <p></p>
+    <input id="input" type="text">
+    <button id="botaoSend" type="button" style="height: 2rem; width: 3.5rem;">Enviar</button>
+    <button id="botaoDelete" type="button" style="height: 2rem; width: 3.5rem;">Deletar</button>
+
+    <ul id="lista">
+        To Do:
+        <li>Me tacar da Segunda Ponte</li>
+    </ul>
+    <p></p>
+    <input id="pesquisa" type="text" placeholder="Filtre uma tarefa">
+
+    <button id="botaoTema" type="button" style="height: 2rem; width: 3.5rem;">Claro</button>
+    <p></p>
+    <img id="ele" src="https://img.odcdn.com.br/wp-content/uploads/2023/10/Luva-de-Pedreiro.jpeg" alt="Deus" style="height: 8rem; transition: transform 0.2s ease;">
+    <p></p>
+    <button id="botaoZoomIn" type="button" style="height: 2rem; width: 3.5rem;">Zoom In</button>
+    <button id="botaoZoomOut" type="button" style="height: 2rem; width: 3.5rem;">Zoom Out</button>
+    <button id="botaoTroca" type="button" style="height: 2rem; width: 3.5rem;">Troca</button>
+    <p></p>
+    <button id="botaoConta" type="button" style="height: 2rem; width: 3.5rem;">+1</button>
+    <p id="contagem">0</p>
+    <script>
+        $(document).ready(function () {
+            $('#botaoReceba').click(function () {
+                if($('#elemento').text() === 'Receba?') {
+                    $('#elemento').text('RECEBO!')
+                } else {
+                    $('#elemento').text('Receba?')
+                };
+            });
+
+            $('#botaoPuf').click(function () {
+                $('#elemento').toggle()
+            });
+
+            $('#botaoSend').click(function () {
+                if (!($('#input').val() === '')) {
+                    $('#lista').append(`<li>${$('#input').val()}</li>`);
+                } else {
+                    return
+                }
+            });
+
+            $('#botaoDelete').click(function () {
+                $('#lista li:last').remove()
+            })
+
+            $('#botaoTema').click(function () {
+                $('body').toggleClass('estiloClaro')
+                if($('#botaoTema').text() === 'Claro') {
+                    $('#botaoTema').text('Escuro')
+                } else {
+                    $('#botaoTema').text('Claro')
+                };
+            })
+
+            $('#botaoZoomIn').click(function () {
+                $('#ele').animate({
+                    height: '+=15rem'
+                }, 1000);
+            })
+
+            $('#botaoZoomOut').click(function () {
+                $('#ele').animate({
+                    height: '-=15rem'
+                }, 1000);
+            })
+
+            $('#botaoTroca').click(function () {
+                if ($('#ele').attr('src') === 'https://img.odcdn.com.br/wp-content/uploads/2023/10/Luva-de-Pedreiro.jpeg') {
+                    $('#ele').attr('src', 'https://istoedinheiro.com.br/wp-content/uploads/sites/17/2022/11/img-0072-e1668040820498.jpg')
+                } else {
+                    $('#ele').attr('src', 'https://img.odcdn.com.br/wp-content/uploads/2023/10/Luva-de-Pedreiro.jpeg')
+                }
+            })
+
+            $('#pesquisa').keyup(function() {
+                var termo = $(this).val().toLowerCase();
+                $('#lista li').each(function() {
+                  var texto = $(this).text().toLowerCase();
+                  if (texto.indexOf(termo) === -1) {
+                    $(this).hide();
+                  } else {
+                    $(this).show();
+                  }
+                });
+            });
+
+            $('#botaoConta').click(function () {
+                let valor = parseInt($('#contagem').text())
+                $('#contagem').text(valor + 1)
+            })
+        });
+    </script>
+</body>
+</html>
